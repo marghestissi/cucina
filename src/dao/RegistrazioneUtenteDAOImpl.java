@@ -22,7 +22,7 @@ public class RegistrazioneUtenteDAOImpl implements RegistrazioneUtenteDAO {
 	
 	/*
 	 * registrazione di un nuovo utente alla scuola di formazione 
-	 * se l'utente gi‡ esiste si solleva una eccezione
+	 * se l'utente gi√† esiste si solleva una eccezione
 	 */
 	@Override
 	public void insert(Utente u) throws SQLException {
@@ -73,8 +73,8 @@ public class RegistrazioneUtenteDAOImpl implements RegistrazioneUtenteDAO {
 
 	/*
 	 * cancellazione di un singolo utente
-	 * l'utente si puÚ cancellare solo se non Ë correlato ad altri dati
-	 * se l'utente non esiste o non Ë cancellabile si solleva una eccezione
+	 * l'utente si pu√≤ cancellare solo se non √® correlato ad altri dati
+	 * se l'utente non esiste o non √® cancellabile si solleva una eccezione
 	 */
 	@Override
 	public void delete(String idUtente) throws SQLException {
@@ -99,7 +99,7 @@ public class RegistrazioneUtenteDAOImpl implements RegistrazioneUtenteDAO {
 		PreparedStatement ps = conn.prepareStatement("SELECT * FROM registrati");
 		
 		ResultSet rs = ps.executeQuery();
-		if(rs.next()) {
+		while(rs.next()) {
 			String idUtente = rs.getString("id_utente");
 			String password = rs.getString("password");
 			String nome = rs.getString("nome");
@@ -111,11 +111,10 @@ public class RegistrazioneUtenteDAOImpl implements RegistrazioneUtenteDAO {
 			
 			Utente registrato = new Utente(idUtente, password, nome, cognome, dataNascita, email, telefono, false);
 			registrati.add(registrato);
-			return registrati;
 			
-		}else {
-			return null;
 		}
+		
+		return registrati;
 	
 	}
 	
