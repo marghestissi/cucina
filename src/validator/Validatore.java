@@ -38,5 +38,22 @@ public class Validatore{
 	}
 
 	//TODO: aggiungere tutti i controlli per le diverse form del sito
-	
+	public static List<ErroreValidazione> validazioneLogin(HttpServletRequest request){
+		List<ErroreValidazione> lista = new ArrayList<>();
+		
+		//leggo i parametri da registrazione.jsp
+		String idUtente = request.getParameter("idUtente");
+		if(idUtente == null || idUtente.length()==0)
+			lista.add(new ErroreValidazione("idUtente", "idUtente " + bundle.getString("error.required")));
+
+		String password = request.getParameter("password");
+		if(password == null || password.length()==0)
+			lista.add(new ErroreValidazione("password", "password " + bundle.getString("error.required")));
+		else if(password.length()<8)
+				//il controllo viene fatto solo se la password è stata inserita
+				lista.add(new ErroreValidazione("password", bundle.getString("error.minlength") + " 8"));
+		
+		
+		return lista;
+	}
 }

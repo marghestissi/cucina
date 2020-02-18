@@ -31,5 +31,9 @@ public class SingletonConnection {
 		
 		return conn; 
 	}
+	
+	public static void main(String[] args) throws ConnessioneException {
+		System.out.println(getInstance());
+	}
 
 }
