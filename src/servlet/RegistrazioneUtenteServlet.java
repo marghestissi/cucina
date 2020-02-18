@@ -28,6 +28,7 @@ public class RegistrazioneUtenteServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//invocazione al validatore per il controllo dei campi
+		//invio alla jsp i mesaggi di errore
 		List<ErroreValidazione> lista = Validatore.validazioneUtente(request);
 		if(lista.size()!=0){
 			request.setAttribute("lista", lista );
@@ -55,6 +56,7 @@ public class RegistrazioneUtenteServlet extends HttpServlet {
 
 	private Utente getUtenteFromQueryString(HttpServletRequest request){
 
+		//Lettura input dal form
 		String idUtente = request.getParameter("idUtente");
 		String password = request.getParameter("password");
 		String nome = request.getParameter("nome");
