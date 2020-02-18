@@ -21,7 +21,7 @@ public class IscrizioneUtenteDAOImpl implements IscrizioneUtenteDAO {
 	public IscrizioneUtenteDAOImpl() throws ConnessioneException{
 		conn = SingletonConnection.getInstance();
 	}
-	
+	/*Commento ahmed bellissimo*/
 	/*
 	 * iscrizione di un certo utente ad una certa edizione di un corso.
 	 * sia l'utente che l'edizione devono già essere stati registrati in precedenza
