@@ -53,6 +53,8 @@ public class Edizione {
 	public Date getDataInizio() {
 		return dataInizio;
 	}
+	
+	//
 	public void setDataInizio(Date dataInizio) {
 		this.dataInizio = dataInizio;
 	}
