@@ -93,7 +93,7 @@ public class IscrizioneUtenteDAOImpl implements IscrizioneUtenteDAO {
 				ps.setInt(1, idEdizione);
 				ps.setString(2, idUtente);
 			
-				
+				//
 				ps.executeUpdate();
 			}
 			
