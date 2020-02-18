@@ -52,7 +52,7 @@ public class IscrizioneUtenteDAOImpl implements IscrizioneUtenteDAO {
 					}
 					
 				}
-				
+				//
 				PreparedStatement ps= conn.prepareStatement("INSERT INTO `iscritti` (`id_edizione`, `id_utente`) VALUES(?, ?)");
 				ps.setInt(1, idEdizione);
 				ps.setString(2, idUtente);
@@ -148,8 +148,24 @@ public class IscrizioneUtenteDAOImpl implements IscrizioneUtenteDAO {
 	 */
 	@Override
 	public ArrayList<Utente> selectUtentiPerEdizione(int idEdizione) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Utente> utenti = new ArrayList<Utente>();
+		RegistrazioneUtenteDAOImpl rg;
+		try {
+			rg = new RegistrazioneUtenteDAOImpl();
+			PreparedStatement ps= conn.prepareStatement("select id_utente from iscritti where id_edizione=?");
+			ps.setInt(1, idEdizione);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				utenti.add(rg.select(rs.getString(1)));
+			}
+			
+		} catch (ConnessioneException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return utenti;
 	}
 
 	/*
@@ -157,13 +173,32 @@ public class IscrizioneUtenteDAOImpl implements IscrizioneUtenteDAO {
 	 */
 	@Override
 	public int getNumeroIscritti(int idEdizione) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int somma=0;
+		PreparedStatement ps= conn.prepareStatement("select count(*) from iscritti where id_edizione=?");
+		
+		ps.setInt(1, idEdizione);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			
+			somma=rs.getInt(1);
+			
+			
+		}
+		
+		return somma;
 	}
 	
 	public static void main(String[] args) throws ConnessioneException, SQLException {
 		IscrizioneUtenteDAOImpl in= new IscrizioneUtenteDAOImpl();
+
 		in.iscriviUtente(93, "Ing_Ruben");
+
+		
+		System.out.println(in.selectUtentiPerEdizione(93).toString());
+		System.out.println(in.getNumeroIscritti(93));
 	}
 
 
