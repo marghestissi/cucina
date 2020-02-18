@@ -20,6 +20,7 @@ public class Validatore{
 	public static List<ErroreValidazione> validazioneUtente(HttpServletRequest request){
 		List<ErroreValidazione> lista = new ArrayList<>();
 		
+		//leggo i parametri da registrazione.jsp
 		String idUtente = request.getParameter("idUtente");
 		if(idUtente == null || idUtente.length()==0)
 			lista.add(new ErroreValidazione("idUtente", "idUtente " + bundle.getString("error.required")));
