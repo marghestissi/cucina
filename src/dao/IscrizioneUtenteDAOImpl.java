@@ -75,10 +75,37 @@ public class IscrizioneUtenteDAOImpl implements IscrizioneUtenteDAO {
 	 */
 	@Override
 	public void cancellaIscrizioneUtente(int idEdizione, String idUtente) throws SQLException {
-		// TODO Auto-generated method stub
+		Utente utente=null;
+		Edizione edizione=null;
+		RegistrazioneUtenteDAOImpl ur;
+		CalendarioDAOImpl calendario;
+		
+		try {
+			ur = new RegistrazioneUtenteDAOImpl();
+			calendario = new CalendarioDAOImpl();
 
+			utente = ur.select(idUtente);
+			edizione = calendario.selectEdizione(idEdizione);
+			
+			if(utente!=null && edizione!= null) {
+			
+				PreparedStatement ps= conn.prepareStatement("delete from iscritti where id_edizione=? AND id_utente=?");
+				ps.setInt(1, idEdizione);
+				ps.setString(2, idUtente);
+			
+				
+				ps.executeUpdate();
+			}
+			
+		} catch (ConnessioneException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
 	}
-
+	
 	/*
 	 * lettura di tutte le edizioni a cui è iscritto un utente
 	 * se l'utente non esiste o non è iscritto a nessuna edizione si torna una lista vuota
@@ -132,9 +159,9 @@ public class IscrizioneUtenteDAOImpl implements IscrizioneUtenteDAO {
 		return 0;
 	}
 	
-	public static void main(String[] args) throws ConnessioneException {
+	public static void main(String[] args) throws ConnessioneException, SQLException {
 		IscrizioneUtenteDAOImpl in= new IscrizioneUtenteDAOImpl();
-		in.iscriviUtente(94,"Ing_Ruben");
+		in.iscriviUtente(93, "Ing_Ruben");
 	}
 
 
