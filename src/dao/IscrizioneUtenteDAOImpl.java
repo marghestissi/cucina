@@ -131,7 +131,7 @@ public class IscrizioneUtenteDAOImpl implements IscrizioneUtenteDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+	//
 	public static void main(String[] args) throws ConnessioneException {
 		IscrizioneUtenteDAOImpl in= new IscrizioneUtenteDAOImpl();
 		in.iscriviUtente(94,"Ing_Ruben");
