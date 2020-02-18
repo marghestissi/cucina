@@ -22,7 +22,6 @@ public class IscrizioneUtenteDAOImpl implements IscrizioneUtenteDAO {
 		conn = SingletonConnection.getInstance();
 	}
 
-/*ahmed*/
 
 
 	/*
