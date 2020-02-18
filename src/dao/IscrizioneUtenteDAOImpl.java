@@ -98,7 +98,7 @@ public class IscrizioneUtenteDAOImpl implements IscrizioneUtenteDAO {
 				
 				int i=rs.getInt(1);
 				edizioneUtente.add(calendario.selectEdizione(i));
-				
+				//hhh
 			}
 		
 		} catch (ConnessioneException e) {
