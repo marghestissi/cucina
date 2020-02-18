@@ -13,5 +13,6 @@ public interface CatalogoDAO {
 	void delete(int idCorso) throws SQLException;
 	ArrayList<Corso> select() throws SQLException;
 	Corso select(int idCorso) throws SQLException;
+	//ESEMPIO
 
 }
