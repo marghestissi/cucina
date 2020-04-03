@@ -60,6 +60,7 @@ public class Validatore{
 
 		}
 		
+		//MODIFICA
 		
 		return lista;
 	}
