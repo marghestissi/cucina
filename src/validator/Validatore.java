@@ -33,6 +33,33 @@ public class Validatore{
 				lista.add(new ErroreValidazione("password", bundle.getString("error.minlength") + " 8"));
 		
 		//TODO: continuare con gli eventuali controlli di validità che si ritiene necessari
+		String nome = request.getParameter("nome");
+		if(nome == null || nome.length()==0)
+			lista.add(new ErroreValidazione("nome", "nome " + bundle.getString("error.required")));
+
+		String cognome = request.getParameter("cognome");
+		if(cognome == null || cognome.length()==0)
+			lista.add(new ErroreValidazione("cognome", "cognome " + bundle.getString("error.required")));
+
+		String anno = request.getParameter("anno");
+		if(anno == null || anno.length()==0)
+			lista.add(new ErroreValidazione("anno", "anno " + bundle.getString("error.required")));
+
+		String telefono = request.getParameter("telefono");
+		if(telefono == null || telefono.length()==0)
+			lista.add(new ErroreValidazione("telefono", "telefono " + bundle.getString("error.required")));
+
+		String email = request.getParameter("email");
+		if(email == null || email.length()==0)
+			lista.add(new ErroreValidazione("email", "email " + bundle.getString("error.required")));
+
+		try {
+			long numeroTelefono = Long.parseLong(telefono);
+		} catch (Exception e) {
+			lista.add(new ErroreValidazione("telefono", "telefono " + bundle.getString("error.type.long")));
+
+		}
+		
 		
 		return lista;
 	}
